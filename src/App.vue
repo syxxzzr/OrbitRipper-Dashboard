@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { useFrontendStore } from '@/stores/useFrontendStore.ts'
 
-import { SidebarProvider } from '@/components/ui/sidebar'
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import Sidebar from '@/components/Sidebar.vue'
-import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
-import SidebarTrigger from '@/components/SidebarTrigger.vue'
+import Header from '@/components/Header.vue'
 
 const userStore = useFrontendStore()
 </script>
@@ -13,8 +12,9 @@ const userStore = useFrontendStore()
   <main :class="{ dark: userStore.useDarkTheme }">
     <SidebarProvider>
       <Sidebar />
-      <SidebarTrigger />
-      <ThemeSwitcher />
+      <SidebarInset>
+        <Header />
+      </SidebarInset>
     </SidebarProvider>
   </main>
 </template>
