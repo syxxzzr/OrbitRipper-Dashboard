@@ -13,7 +13,7 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
       <BreadcrumbList class="text-base">
         <span class="text-[var(--color-muted-foreground)] select-none">|</span>
         <BreadcrumbPage>
-          {{ $route.name }}
+          {{ $t($route.meta.identifier) }}
         </BreadcrumbPage>
       </BreadcrumbList>
     </Breadcrumb>

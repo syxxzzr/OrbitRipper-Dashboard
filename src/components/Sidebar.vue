@@ -22,7 +22,7 @@ const routes = useRouter().getRoutes()
         <a class="flex justify-center">
           <Orbit class="group-data-[collapsible=]:hidden" />
           <span class="text-lg whitespace-nowrap group-data-[collapsible=icon]:hidden">
-            Orbit Ripping
+            {{ $t('orbitRipping') }}
           </span>
         </a>
       </SidebarHeader>
@@ -30,11 +30,11 @@ const routes = useRouter().getRoutes()
         <SidebarGroupContent class="mb-auto">
           <SidebarMenu>
             <template v-for="route in routes">
-              <SidebarMenuItem v-if="route.meta.renderOnSidebar" :key="route.name">
+              <SidebarMenuItem v-if="route.meta.renderOnSidebar" :key="route.path">
                 <SidebarMenuButton class="py-5" asChild>
                   <RouterLink :to="route.path">
                     <component :is="route.meta.icon" />
-                    <span class="text-center">{{ route.name }}</span>
+                    <span class="text-center">{{ $t(route.meta.identifier) }}</span>
                   </RouterLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>

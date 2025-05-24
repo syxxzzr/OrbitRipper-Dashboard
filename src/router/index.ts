@@ -12,33 +12,28 @@ const router = createRouter({
   routes: [
     {
       path: '/dashboard',
-      name: 'Dashboard',
       component: DashboardView,
-      meta: { renderOnSidebar: true, icon: LayoutDashboard },
+      meta: { renderOnSidebar: true, identifier: 'dashboard', icon: LayoutDashboard },
     },
     {
       path: '/projects',
-      name: 'Projects',
       component: ProjectsView,
-      meta: { renderOnSidebar: true, icon: ClipboardList },
+      meta: { renderOnSidebar: true, identifier: 'projects', icon: ClipboardList },
     },
     {
       path: '/tasks',
-      name: 'Tasks',
       component: TasksView,
-      meta: { renderOnSidebar: true, icon: PencilRuler },
+      meta: { renderOnSidebar: true, identifier: 'tasks', icon: PencilRuler },
     },
     {
       path: '/workers',
-      name: 'Workers',
       component: WorkersView,
-      meta: { renderOnSidebar: true, icon: Gpu },
+      meta: { renderOnSidebar: true, identifier: 'workers', icon: Gpu },
     },
     {
       path: '/settings',
-      name: 'Settings',
       component: SettingsView,
-      meta: { renderOnSidebar: true, icon: Settings },
+      meta: { renderOnSidebar: true, identifier: 'settings', icon: Settings },
     },
 
     { path: '/', redirect: '/dashboard' },

@@ -21,6 +21,5 @@ const { toggleSidebar, open } = useSidebar()
     @click="toggleSidebar"
   >
     <component :is="open ? PanelLeftClose : PanelLeftOpen" class="w-5 h-5" />
-    <span class="sr-only">Toggle Sidebar</span>
   </Button>
 </template>

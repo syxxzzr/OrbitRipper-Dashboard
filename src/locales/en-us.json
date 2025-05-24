@@ -1,0 +1,13 @@
+{
+  "orbitRipping": "Orbit Ripping",
+
+  "dashboard": "Dashboard",
+  "projects": "Projects",
+  "tasks": "Tasks",
+  "workers": "Workers",
+  "settings": "Settings",
+
+  "light": "light",
+  "dark": "dark",
+  "system": "system"
+}
