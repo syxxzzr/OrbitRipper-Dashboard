@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LayoutDashboard, ClipboardList, PencilRuler, Gpu, Settings } from 'lucide-vue-next'
+import { LayoutDashboard, ClipboardList, PencilRuler, Gpu, Settings, Orbit } from 'lucide-vue-next'
 import {
   Sidebar,
   SidebarContent,
@@ -45,7 +45,10 @@ const items = [
     <SidebarContent>
       <SidebarHeader>
         <a class="flex justify-center">
-          <span class="text-lg"> Orbit Ripping </span>
+          <Orbit class="group-data-[collapsible=]:hidden" />
+          <span class="text-lg whitespace-nowrap group-data-[collapsible=icon]:hidden">
+            Orbit Ripping
+          </span>
         </a>
       </SidebarHeader>
       <SidebarGroup>
