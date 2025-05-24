@@ -14,6 +14,7 @@ const userStore = useFrontendStore()
       <Sidebar />
       <SidebarInset>
         <Header />
+        <RouterView />
       </SidebarInset>
     </SidebarProvider>
   </main>
