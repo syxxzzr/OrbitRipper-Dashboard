@@ -26,12 +26,12 @@ function switchTheme() {
     data-sidebar="trigger"
     data-slot="sidebar-trigger"
     variant="ghost"
-    :class="cn('w-7 h-7 text-[var(--sidebar-foreground)]', props.class)"
+    :class="cn('w-8 h-8 text-[var(--sidebar-foreground)]', props.class)"
     @click="switchTheme"
   >
-    <Sun v-if="frontendStore.theme === 'light'" class="w-5 h-5" />
-    <Moon v-else-if="frontendStore.theme === 'dark'" class="w-5 h-5" />
-    <SunMoon v-else class="w-5 h-5" />
+    <Sun v-if="frontendStore.theme === 'light'" class="w-6.5 h-6.5" />
+    <Moon v-else-if="frontendStore.theme === 'dark'" class="w-6.5 h-6.5" />
+    <SunMoon v-else class="w-6.5 h-6.5" />
     <span class="sr-only">Toggle Sidebar</span>
   </Button>
 </template>
