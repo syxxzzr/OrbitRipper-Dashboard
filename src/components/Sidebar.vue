@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LayoutDashboard, ClipboardList, PencilRuler, Gpu, Settings, Orbit } from 'lucide-vue-next'
+import { Orbit } from 'lucide-vue-next'
 import {
   Sidebar,
   SidebarContent,
@@ -10,34 +10,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
+import { useRouter } from 'vue-router'
 
-const items = [
-  {
-    title: 'Dashboard',
-    url: '/dashboard',
-    icon: LayoutDashboard,
-  },
-  {
-    title: 'Projects',
-    url: '/projects',
-    icon: PencilRuler,
-  },
-  {
-    title: 'Tasks',
-    url: '/tasks',
-    icon: ClipboardList,
-  },
-  {
-    title: 'Workers',
-    url: '/workers',
-    icon: Gpu,
-  },
-  {
-    title: 'Settings',
-    url: '/settings',
-    icon: Settings,
-  },
-]
+const routes = useRouter().getRoutes()
 </script>
 
 <template>
@@ -54,14 +29,16 @@ const items = [
       <SidebarGroup>
         <SidebarGroupContent class="mb-auto">
           <SidebarMenu>
-            <SidebarMenuItem v-for="item in items" :key="item.title">
-              <SidebarMenuButton class="py-5" asChild>
-                <RouterLink :to="item.url">
-                  <component :is="item.icon" />
-                  <span class="text-center">{{ item.title }}</span>
-                </RouterLink>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
+            <template v-for="route in routes">
+              <SidebarMenuItem v-if="route.meta.renderOnSidebar" :key="route.name">
+                <SidebarMenuButton class="py-5" asChild>
+                  <RouterLink :to="route.path">
+                    <component :is="route.meta.icon" />
+                    <span class="text-center">{{ route.name }}</span>
+                  </RouterLink>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            </template>
           </SidebarMenu>
         </SidebarGroupContent>
       </SidebarGroup>
