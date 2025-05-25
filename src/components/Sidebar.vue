@@ -22,7 +22,7 @@ const routes = useRouter().getRoutes()
         <a class="flex justify-center">
           <Orbit class="group-data-[collapsible=]:hidden" />
           <span class="text-lg whitespace-nowrap group-data-[collapsible=icon]:hidden">
-            {{ $t('orbitRipping') }}
+            {{ $t('orbit-ripping') }}
           </span>
         </a>
       </SidebarHeader>
