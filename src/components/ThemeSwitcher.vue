@@ -32,6 +32,5 @@ function switchTheme() {
     <Sun v-if="frontendStore.theme === 'light'" class="w-6.5 h-6.5" />
     <Moon v-else-if="frontendStore.theme === 'dark'" class="w-6.5 h-6.5" />
     <SunMoon v-else class="w-6.5 h-6.5" />
-    <span class="sr-only">Toggle Sidebar</span>
   </Button>
 </template>
