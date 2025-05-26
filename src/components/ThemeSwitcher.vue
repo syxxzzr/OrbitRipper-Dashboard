@@ -23,10 +23,8 @@ function switchTheme() {
 
 <template>
   <Button
-    data-sidebar="trigger"
-    data-slot="sidebar-trigger"
     variant="ghost"
-    :class="cn('w-8 h-8 text-[var(--sidebar-foreground)]', props.class)"
+    :class="cn('w-8 h-8 text-[var(--color-primary-foreground)]', props.class)"
     @click="switchTheme"
   >
     <Sun v-if="frontendStore.theme === 'light'" class="w-6.5 h-6.5" />
