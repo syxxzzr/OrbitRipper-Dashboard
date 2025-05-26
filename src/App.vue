@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
@@ -12,12 +12,17 @@ const frontendStore = useFrontendStore()
 
 onMounted(() => {
   const { locale } = useI18n()
-  locale.value = frontendStore.language
+  locale.value = frontendStore.locale
+  watch(locale, () => {
+    if (frontendStore.locale !== locale.value) {
+      frontendStore.locale = locale.value
+    }
+  })
 })
 </script>
 
 <template>
-  <main :class="{ dark: frontendStore.useDarkTheme }">
+  <main>
     <SidebarProvider>
       <Sidebar />
       <SidebarInset>

@@ -1,33 +1,29 @@
 import { createI18n } from 'vue-i18n'
 
-const messages: Record<string, Record<string, string>> = {
-  'en-us': {
-    'language-name': 'English',
+interface localeConfig {
+  'language-name': string
+  messages: Record<string, string>
+}
 
-    'orbit-ripping': 'Orbit Ripping',
+const locales = import.meta.glob('./locales/*.json', { eager: true }) as Record<
+  string,
+  { default: localeConfig }
+>
+const localeNameList: Record<string, string> = {}
 
-    dashboard: 'Dashboard',
-    projects: 'Projects',
-    tasks: 'Tasks',
-    workers: 'Workers',
-    settings: 'Settings',
+const messages: Record<string, Record<string, string>> = {}
+for (const [path, localeConfig] of Object.entries(locales)) {
+  const localeKeyReg = path.match(/([a-z]{2}-[a-z]{2})\.json$/i)
+  if (!localeKeyReg) {
+    continue
+  }
+  const localeKey = localeKeyReg[1].toLowerCase()
+  localeNameList[`$${localeKey}`] = localeConfig.default['language-name']
+  messages[localeKey] = localeConfig.default.messages
+}
 
-    light: 'light',
-    dark: 'dark',
-    system: 'system',
-  },
-  'zh-cn': {
-    'language-name': '简体中文',
-
-    dashboard: '仪表盘',
-    projects: '项目',
-    tasks: '任务',
-    settings: '设置',
-
-    light: '浅色模式',
-    dark: '深色模式',
-    system: '跟随系统',
-  },
+for (const localeKey of Object.keys(messages)) {
+  messages[localeKey] = { ...messages[localeKey], ...localeNameList }
 }
 
 const i18n = createI18n({
@@ -36,4 +32,5 @@ const i18n = createI18n({
   messages,
 })
 
+export type AvailableLocales = keyof typeof messages
 export default i18n
