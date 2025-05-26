@@ -1,34 +1,44 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
-import type { ThemeType } from '@/stores/useFrontendStore.ts'
+import { computed, watchEffect, type HTMLAttributes } from 'vue'
+import { Button } from '@/components/ui/button'
 import { Sun, Moon, SunMoon } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
+import { useColorMode, useCycleList } from '@vueuse/core'
 import { useFrontendStore } from '@/stores/useFrontendStore.ts'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
-
 const frontendStore = useFrontendStore()
+const theme = useColorMode()
 
-const themeList: ThemeType[] = ['system', 'light', 'dark']
-let themeIndex = themeList.indexOf(frontendStore.theme)
-function switchTheme() {
-  themeIndex++
-  themeIndex %= themeList.length
-  frontendStore.theme = themeList[themeIndex]
-}
+const { state, next } = useCycleList(['light', 'dark', 'auto'] as const, {
+  initialValue: frontendStore.theme,
+})
+
+watchEffect(() => (theme.value = state.value))
+watchEffect(() => (frontendStore.theme = state.value))
+
+const themeIcon = computed(() => {
+  switch (state.value) {
+    case 'auto':
+      return SunMoon
+    case 'dark':
+      return Moon
+    case 'light':
+      return Sun
+    default:
+      return SunMoon
+  }
+})
 </script>
 
 <template>
   <Button
-    variant="ghost"
-    :class="cn('w-8 h-8 text-[var(--color-primary-foreground)]', props.class)"
-    @click="switchTheme"
+    variant="outline"
+    :class="cn('w-8 h-8 text-[var(--sidebar-foreground)]', props.class)"
+    @click="next()"
   >
-    <Sun v-if="frontendStore.theme === 'light'" class="w-6.5 h-6.5" />
-    <Moon v-else-if="frontendStore.theme === 'dark'" class="w-6.5 h-6.5" />
-    <SunMoon v-else class="w-6.5 h-6.5" />
+    <component :is="themeIcon" />
   </Button>
 </template>
