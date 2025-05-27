@@ -34,7 +34,7 @@ const routes = useRouter().getRoutes()
                 <SidebarMenuButton class="py-5" asChild>
                   <RouterLink :to="route.path">
                     <component :is="route.meta.icon" />
-                    <span class="text-center">{{ $t(route.meta.identifier) }}</span>
+                    <span class="text-center">{{ $t(route.meta.key) }}</span>
                   </RouterLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>

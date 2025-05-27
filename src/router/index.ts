@@ -13,27 +13,27 @@ const router = createRouter({
     {
       path: '/dashboard',
       component: DashboardView,
-      meta: { identifier: 'dashboard', renderOnSidebar: true, icon: LayoutDashboard },
+      meta: { key: 'dashboard', renderOnSidebar: true, icon: LayoutDashboard },
     },
     {
       path: '/projects',
       component: ProjectsView,
-      meta: { identifier: 'projects', renderOnSidebar: true, icon: ClipboardList },
+      meta: { key: 'projects', renderOnSidebar: true, icon: ClipboardList },
     },
     {
       path: '/tasks',
       component: TasksView,
-      meta: { identifier: 'tasks', renderOnSidebar: true, icon: PencilRuler },
+      meta: { key: 'tasks', renderOnSidebar: true, icon: PencilRuler },
     },
     {
       path: '/workers',
       component: WorkersView,
-      meta: { identifier: 'workers', renderOnSidebar: true, icon: Gpu },
+      meta: { key: 'workers', renderOnSidebar: true, icon: Gpu },
     },
     {
       path: '/settings',
       component: SettingsView,
-      meta: { identifier: 'settings', renderOnSidebar: true, icon: Settings },
+      meta: { key: 'settings', renderOnSidebar: true, icon: Settings },
     },
 
     { path: '/', redirect: '/dashboard' },

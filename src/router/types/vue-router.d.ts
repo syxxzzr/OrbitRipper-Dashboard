@@ -3,7 +3,7 @@ import type { FunctionalComponent } from 'vue'
 
 declare module 'vue-router' {
   interface RouteMeta extends OriginalRouteMeta {
-    identifier: string
+    key: string
     renderOnSidebar?: boolean
     icon?: FunctionalComponent
   }

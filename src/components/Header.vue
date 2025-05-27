@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { Breadcrumb, BreadcrumbList, BreadcrumbPage } from '@/components/ui/breadcrumb'
-import SidebarTrigger from '@/components/SidebarTrigger.vue'
+import { SidebarTrigger } from '@/components/ui/sidebar'
 import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
+import LanguageSwitcher from '@/components/LocaleSwitcher.vue'
 </script>
 
 <template>
@@ -11,14 +12,15 @@ import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
     <SidebarTrigger class="m-2" />
     <Breadcrumb>
       <BreadcrumbList class="text-base">
-        <span class="text-[var(--color-muted-foreground)] select-none">|</span>
+        <span>|</span>
         <BreadcrumbPage>
-          {{ $t($route.meta.identifier) }}
+          {{ $t($route.meta.key) }}
         </BreadcrumbPage>
       </BreadcrumbList>
     </Breadcrumb>
-    <div class="text-[var(--color-muted-foreground)]"></div>
+    <div></div>
     <ThemeSwitcher class="ml-auto mr-2" />
+    <LanguageSwitcher />
   </header>
 </template>
 
