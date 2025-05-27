@@ -10,15 +10,12 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Languages } from 'lucide-vue-next'
 import { cn } from '@/lib/utils.ts'
-import { type HTMLAttributes, watchEffect } from 'vue'
-import { useFrontendStore } from '@/stores/useFrontendStore.ts'
+import type { HTMLAttributes } from 'vue'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
-const frontendStore = useFrontendStore()
 const { availableLocales, locale } = useI18n()
-watchEffect(() => (frontendStore.locale = locale.value))
 </script>
 
 <template>
