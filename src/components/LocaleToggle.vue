@@ -11,22 +11,24 @@ import {
 import { Languages } from 'lucide-vue-next'
 import { cn } from '@/lib/utils.ts'
 import type { HTMLAttributes } from 'vue'
+import { useFrontendStore } from '@/stores/useFrontendStore.ts'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
-const { availableLocales, locale } = useI18n()
+const { availableLocales } = useI18n()
+const frontendStore = useFrontendStore()
 </script>
 
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline" :class="cn('w-8 h-8', props.class)">
+      <Button variant="outline" :class="cn('w-9 h-9', props.class)">
         <Languages />
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent>
-      <DropdownMenuRadioGroup v-model="locale">
+      <DropdownMenuRadioGroup v-model="frontendStore.locale">
         <DropdownMenuRadioItem
           v-for="localeKey in availableLocales"
           :value="localeKey"

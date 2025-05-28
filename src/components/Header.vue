@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Breadcrumb, BreadcrumbList, BreadcrumbPage } from '@/components/ui/breadcrumb'
 import { SidebarTrigger } from '@/components/ui/sidebar'
-import ThemeSwitcher from '@/components/ThemeSwitcher.vue'
-import LanguageSwitcher from '@/components/LocaleSwitcher.vue'
+import ThemeSwitcher from '@/components/ThemeToggle.vue'
+import LanguageSwitcher from '@/components/LocaleToggle.vue'
 </script>
 
 <template>

@@ -1,19 +1,26 @@
 import { defineStore } from 'pinia'
 import type { Ref } from 'vue'
-import { ref } from 'vue'
-import type { BasicColorSchema } from '@vueuse/core'
+import { computed, ref } from 'vue'
 import type { AvailableLocales } from '@/i18n'
+
+export type ThemeSchema = 'auto' | 'light' | 'dark'
 
 export const useFrontendStore = defineStore(
   'FrontendSetting',
   () => {
     // theme
-    const theme: Ref<BasicColorSchema> = ref('auto')
+    const theme: Ref<ThemeSchema> = ref('auto')
 
-    // language
-    const locale: Ref<AvailableLocales> = ref('zh-cn')
+    // locale
+    const locale: Ref<AvailableLocales> = ref('en-us')
 
-    return { theme, locale }
+    const themeDark: Ref<boolean> = computed(() =>
+      theme.value === 'auto'
+        ? window.matchMedia('(prefers-color-scheme: dark)').matches
+        : theme.value === 'dark',
+    )
+
+    return { theme, locale, themeDark }
   },
   {
     persist: {

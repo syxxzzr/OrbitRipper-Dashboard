@@ -1,26 +1,25 @@
 <script setup lang="ts">
-import { computed, watchEffect, type HTMLAttributes } from 'vue'
+import { computed, type HTMLAttributes } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Sun, Moon, SunMoon } from 'lucide-vue-next'
 import { cn } from '@/lib/utils'
-import { useColorMode, useCycleList } from '@vueuse/core'
-import { useFrontendStore } from '@/stores/useFrontendStore.ts'
+import { useFrontendStore, type ThemeSchema } from '@/stores/useFrontendStore.ts'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']
 }>()
 const frontendStore = useFrontendStore()
-const theme = useColorMode()
 
-const { state, next } = useCycleList(['light', 'dark', 'auto'] as const, {
-  initialValue: frontendStore.theme,
-})
-
-watchEffect(() => (theme.value = state.value))
-watchEffect(() => (frontendStore.theme = state.value))
+const themeCycleList: ThemeSchema[] = ['auto', 'light', 'dark']
+let themeIndex = themeCycleList.indexOf(frontendStore.theme)
+function themeToggle() {
+  themeIndex++
+  themeIndex %= themeCycleList.length
+  frontendStore.theme = themeCycleList[themeIndex]
+}
 
 const themeIcon = computed(() => {
-  switch (state.value) {
+  switch (frontendStore.theme) {
     case 'auto':
       return SunMoon
     case 'dark':
@@ -36,8 +35,8 @@ const themeIcon = computed(() => {
 <template>
   <Button
     variant="outline"
-    :class="cn('w-8 h-8 text-[var(--sidebar-foreground)]', props.class)"
-    @click="next()"
+    :class="cn('w-9 h-9 text-[var(--sidebar-foreground)]', props.class)"
+    @click="themeToggle"
   >
     <component :is="themeIcon" />
   </Button>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watchEffect } from 'vue'
+import { onMounted, watchEffect } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
@@ -11,8 +11,13 @@ import { useFrontendStore } from '@/stores/useFrontendStore.ts'
 const frontendStore = useFrontendStore()
 const { locale } = useI18n()
 
-locale.value = frontendStore.locale
-watchEffect(() => (frontendStore.locale = locale.value))
+onMounted(() => {
+  locale.value = frontendStore.locale
+  document.documentElement.classList.toggle('dark', frontendStore.themeDark)
+
+  watchEffect(() => (locale.value = frontendStore.locale))
+  watchEffect(() => document.documentElement.classList.toggle('dark', frontendStore.themeDark))
+})
 </script>
 
 <template>
