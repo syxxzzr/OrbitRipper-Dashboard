@@ -23,7 +23,7 @@ const frontendStore = useFrontendStore()
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button variant="outline" :class="cn('w-9 h-9', props.class)">
+      <Button variant="outline" :class="cn('w-8.5 h-8.5', props.class)">
         <Languages />
       </Button>
     </DropdownMenuTrigger>
