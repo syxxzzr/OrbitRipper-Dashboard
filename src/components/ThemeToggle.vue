@@ -35,7 +35,7 @@ const themeIcon = computed(() => {
 <template>
   <Button
     variant="outline"
-    :class="cn('w-9 h-9 text-[var(--sidebar-foreground)]', props.class)"
+    :class="cn('w-8.5 h-8.5 text-[var(--sidebar-foreground)]', props.class)"
     @click="themeToggle"
   >
     <component :is="themeIcon" />

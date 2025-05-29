@@ -20,7 +20,7 @@ import LanguageSwitcher from '@/components/LocaleToggle.vue'
     </Breadcrumb>
     <div></div>
     <ThemeSwitcher class="ml-auto mr-2" />
-    <LanguageSwitcher />
+    <LanguageSwitcher class="mr-2" />
   </header>
 </template>
 
