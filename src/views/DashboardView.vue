@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import StateinfoCard from '@/components/StatusinfoCard.vue'
+</script>
+
 <template>
-  <h1>This is Dashboard Page</h1>
+  <StateinfoCard />
 </template>
