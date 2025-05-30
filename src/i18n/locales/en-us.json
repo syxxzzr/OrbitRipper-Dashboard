@@ -14,6 +14,7 @@
     "dark": "dark",
     "auto": "system",
 
-    "task-status": "Task Status"
+    "task-status": "Task Status",
+    "worker-status": "Worker Status"
   }
 }

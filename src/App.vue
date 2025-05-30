@@ -26,7 +26,7 @@ onMounted(() => {
       <Sidebar />
       <SidebarInset>
         <Header />
-        <main class="m-5">
+        <main class="flex flex-1 px-5 py-2 space-x-2 space-y-2">
           <RouterView />
         </main>
       </SidebarInset>

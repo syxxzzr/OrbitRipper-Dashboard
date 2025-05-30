@@ -6,13 +6,11 @@ import LanguageSwitcher from '@/components/LocaleToggle.vue'
 </script>
 
 <template>
-  <header
-    class="flex h-12 shrink-0 items-center transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-9"
-  >
-    <SidebarTrigger class="m-2" />
+  <header class="flex items-center h-12">
+    <SidebarTrigger class="mx-2" />
     <Breadcrumb>
       <BreadcrumbList class="text-base">
-        <span>|</span>
+        <span class="select-none">|</span>
         <BreadcrumbPage>
           {{ $t($route.meta.key) }}
         </BreadcrumbPage>

@@ -5,12 +5,14 @@
     "dashboard": "仪表盘",
     "projects": "项目",
     "tasks": "任务",
+    "workers": "工作单元",
     "settings": "设置",
 
     "light": "浅色模式",
     "dark": "深色模式",
     "auto": "跟随系统",
 
-    "task-status": "任务状态"
+    "task-status": "任务状态",
+    "worker-status": "工作单元状态"
   }
 }
