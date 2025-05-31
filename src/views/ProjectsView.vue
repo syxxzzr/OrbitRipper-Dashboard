@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import ProjectList from '@/components/ProjectList/ProjectList.vue'
+</script>
+
 <template>
-  <h1>This is Projects Page</h1>
+  <ProjectList />
 </template>

@@ -47,6 +47,15 @@
 
     "name": "Name",
     "id": "ID",
-    "create-date": "Create Date"
+    "create-date": "Create Date",
+    "status": "Status",
+    "manage": "Manage",
+    "select": "Select",
+    "select-all": "Select All",
+    "select-row": "Select Row",
+    "delete-selected": "Delete Selected",
+
+    "finished": "Finished",
+    "progressing": "Progressing"
   }
 }

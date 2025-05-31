@@ -44,6 +44,15 @@
 
     "name": "名称",
     "id": "ID",
-    "create-date": "创建时间"
+    "create-date": "创建时间",
+    "status": "状态",
+    "manage": "管理",
+    "select": "选择",
+    "select-all": "全选",
+    "select-row": "选择此行",
+    "delete-selected": "删除已选",
+
+    "finished": "已完成",
+    "progressing": "进行中"
   }
 }
