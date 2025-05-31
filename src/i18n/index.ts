@@ -21,7 +21,7 @@ for (const [path, localeConfig] of Object.entries(locales)) {
   if (!localeKeyReg) {
     continue
   }
-  const localeKey = localeKeyReg[1]
+  const localeKey = localeKeyReg[1].toLowerCase()
   localeNameList[`$${localeKey}`] = localeConfig.default['language-name']
   messages[localeKey] = localeConfig.default.messages
 
@@ -37,14 +37,6 @@ for (const [path, localeConfig] of Object.entries(locales)) {
 for (const localeKey of Object.keys(messages)) {
   messages[localeKey] = { ...messages[localeKey], ...localeNameList }
 }
-
-console.log({
-  locale: 'en-us',
-  fallbackLocale: 'en-us',
-  messages,
-  datetimeFormats,
-  numberFormats,
-})
 
 const i18n = createI18n({
   locale: 'en-us',
