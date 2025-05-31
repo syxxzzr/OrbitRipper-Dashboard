@@ -16,6 +16,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import { Trash, SquarePen } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
+import DeleteButton from '@/components/ProjectList/DeleteButton.vue'
 
 const { t, d } = useI18n()
 const defaultData: ProjectInfo[] = [
@@ -91,7 +92,18 @@ const columns = [
         h(Button, { variant: 'outline', disabled: row.original.status === 'finished' }, () =>
           h(SquarePen),
         ),
-        h(Button, { variant: 'outline' }, () => h(Trash)),
+        h(
+          DeleteButton,
+          {
+            variant: 'outline',
+            countToDelete: 1,
+            onConfirm: () => {
+              // TODO: delete
+              console.log(`Delete ID:${row.original.uuid}`)
+            },
+          },
+          () => h(Trash),
+        ),
       ]),
     enableSorting: false,
     enableHiding: false,
@@ -112,14 +124,20 @@ const table = useVueTable({
 <template>
   <div class="flex w-full flex-col space-y-2">
     <div class="flex">
-      <Button
+      <DeleteButton
+        :on-confirm="
+          () => {
+            console.log(`Delete`)
+          }
+        "
+        :count-to-delete="1"
         variant="destructive"
         class="ml-auto mr-2"
         :disabled="!(table.getIsSomePageRowsSelected() || table.getIsAllPageRowsSelected())"
       >
         <Trash />
         {{ $t('delete-selected') }}
-      </Button>
+      </DeleteButton>
     </div>
 
     <div class="rounded-md border">

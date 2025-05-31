@@ -56,6 +56,12 @@
     "delete-selected": "Delete Selected",
 
     "finished": "Finished",
-    "progressing": "Progressing"
+    "progressing": "Progressing",
+
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+
+    "delete-hint-title": "Confirm Delete",
+    "delete-hint-description": "Are you sure to delete {count} selected projects?"
   }
 }
