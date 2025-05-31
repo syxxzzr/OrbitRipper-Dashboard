@@ -1,6 +1,33 @@
 {
   "language-name": "简体中文",
 
+  "datetime-formats": {
+    "standard": {
+      "year": "numeric",
+      "month": "numeric",
+      "day": "numeric",
+      "hour": "numeric",
+      "minute": "numeric"
+    }
+  },
+
+  "number-formats": {
+    "currency": {
+      "style": "currency",
+      "currency": "USD",
+      "notation": "standard"
+    },
+    "decimal": {
+      "style": "decimal",
+      "minimumFractionDigits": 2,
+      "maximumFractionDigits": 2
+    },
+    "percent": {
+      "style": "percent",
+      "useGrouping": false
+    }
+  },
+
   "messages": {
     "dashboard": "仪表盘",
     "projects": "项目",
@@ -13,6 +40,10 @@
     "auto": "跟随系统",
 
     "task-status": "任务状态",
-    "worker-status": "工作单元状态"
+    "worker-status": "工作单元状态",
+
+    "name": "名称",
+    "id": "ID",
+    "create-date": "创建时间"
   }
 }
