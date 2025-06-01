@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
-import type { PrimitiveProps } from 'reka-ui'
-import type { Column } from '@tanstack/vue-table'
+
 import { Text, ArrowDownWideNarrow, ArrowUpWideNarrow } from 'lucide-vue-next'
 
+import type { PrimitiveProps } from 'reka-ui'
+import type { Column } from '@tanstack/vue-table'
+
 interface Props extends PrimitiveProps {
-  localeKey: number | string
+  localeKey: string
   column: Column<ProjectInfo>
 }
 
