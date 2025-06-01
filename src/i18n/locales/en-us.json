@@ -61,7 +61,7 @@
     "confirm": "Confirm",
     "cancel": "Cancel",
 
-    "delete-hint-title": "Confirm Delete",
-    "delete-hint-description": "Are you sure to delete {count} selected projects?"
+    "delete-hint-title": "Delete Confirm",
+    "delete-hint-description": "Are you sure to delete this project? | Are you sure to delete {count} selected projects?"
   }
 }

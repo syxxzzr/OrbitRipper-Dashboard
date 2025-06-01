@@ -12,44 +12,45 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button, type ButtonVariants } from '@/components/ui/button'
 import type { PrimitiveProps } from 'reka-ui'
-import type { HTMLAttributes } from 'vue'
+import type { Row } from '@tanstack/vue-table'
+
+interface onConfirmFunction {
+  (selectedRow: Row<ProjectInfo>[]): void
+}
 
 interface Props extends PrimitiveProps {
-  countToDelete: number
-  onConfirm: Function
+  selected: Row<ProjectInfo>[]
+  onConfirm: onConfirmFunction
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
-  class?: HTMLAttributes['class']
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  as: 'button',
+  as: Button,
 })
 </script>
 
 <template>
   <AlertDialog>
-    <AlertDialogTrigger>
-      <Button
-        :variant="props.variant"
-        :size="props.size"
-        :as="props.as"
-        :asChild="props.asChild"
-        :class="props.class"
-      >
-        <slot />
-      </Button>
+    <AlertDialogTrigger
+      :variant="props.variant"
+      :size="props.size"
+      :as="props.as"
+      :asChild="props.asChild"
+      v-bind="$attrs"
+    >
+      <slot />
     </AlertDialogTrigger>
     <AlertDialogContent>
       <AlertDialogHeader>
         <AlertDialogTitle>{{ $t('delete-hint-title') }}</AlertDialogTitle>
         <AlertDialogDescription>
-          {{ $t('delete-hint-description', { count: props.countToDelete }) }}
+          {{ $t('delete-hint-description', { count: props.selected.length }) }}
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>{{ $t('cancel') }}</AlertDialogCancel>
-        <AlertDialogAction @click="props.onConfirm">
+        <AlertDialogAction @click="props.onConfirm(props.selected)">
           {{ $t('confirm') }}
         </AlertDialogAction>
       </AlertDialogFooter>
