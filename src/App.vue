@@ -5,6 +5,9 @@ import { useI18n } from 'vue-i18n'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import Sidebar from '@/components/Sidebar.vue'
 import Header from '@/components/Header.vue'
+import { Toaster } from '@/components/ui/sonner'
+
+import 'vue-sonner/style.css'
 
 import { useFrontendStore } from '@/stores/useFrontendStore.ts'
 
@@ -21,6 +24,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <Toaster />
   <main>
     <SidebarProvider>
       <Sidebar />

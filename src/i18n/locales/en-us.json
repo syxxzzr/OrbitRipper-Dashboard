@@ -62,6 +62,9 @@
     "cancel": "Cancel",
 
     "delete-hint-title": "Delete Confirm",
-    "delete-hint-description": "Are you sure to delete this project? | Are you sure to delete {count} selected projects?"
+    "delete-hint-description": "Are you sure to delete this project? | Are you sure to delete {count} selected projects?",
+    "delete-success": "Successfully Deleted",
+    "delete-failed": "Failed to Delete",
+    "delete-success-info": "One selected project successfully deleted | {count} selected projects successfully deleted"
   }
 }

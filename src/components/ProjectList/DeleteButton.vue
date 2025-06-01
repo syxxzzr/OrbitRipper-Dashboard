@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {
   AlertDialog,
-  AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
@@ -11,9 +10,12 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button, type ButtonVariants } from '@/components/ui/button'
-// import { toast } from 'vue-sonner'
+import { Loader2 } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 import type { PrimitiveProps } from 'reka-ui'
 import type { Row } from '@tanstack/vue-table'
+import { useI18n } from 'vue-i18n'
+import { ref } from 'vue'
 
 interface Props extends PrimitiveProps {
   selected: Row<ProjectInfo>[]
@@ -21,18 +23,28 @@ interface Props extends PrimitiveProps {
   size?: ButtonVariants['size']
 }
 
+const { t } = useI18n()
 const props = withDefaults(defineProps<Props>(), {
   as: Button,
 })
+const open = ref(false)
+const isLoading = ref(false)
 
-function deleteProjects() {
-  // TODO
+async function deleteProjects() {
+  isLoading.value = true
+  setTimeout(() => {
+    open.value = false
+    isLoading.value = false
+    toast(t('delete-success'), {
+      description: t('delete-success-info', { count: props.selected.length }),
+    })
+  }, 3000)
   console.log(props.selected)
 }
 </script>
 
 <template>
-  <AlertDialog>
+  <AlertDialog v-model:open="open">
     <AlertDialogTrigger
       :variant="props.variant"
       :size="props.size"
@@ -51,9 +63,10 @@ function deleteProjects() {
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>{{ $t('cancel') }}</AlertDialogCancel>
-        <AlertDialogAction @click="deleteProjects">
+        <Button @click="deleteProjects" :disabled="isLoading">
+          <Loader2 v-if="isLoading" class="animate-spin" />
           {{ $t('confirm') }}
-        </AlertDialogAction>
+        </Button>
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>
