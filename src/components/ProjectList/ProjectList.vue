@@ -75,7 +75,7 @@ const columns = [
         column: column,
       })
     },
-    cell: ({ row }: { row: Row<ProjectInfo> }) => h('div', row.getValue('name')),
+    cell: ({ row }: { row: Row<ProjectInfo> }) => row.getValue('name'),
   },
   {
     accessorKey: 'uuid',
@@ -85,7 +85,7 @@ const columns = [
         column: column,
       })
     },
-    cell: ({ row }: { row: Row<ProjectInfo> }) => h('div', row.getValue('uuid')),
+    cell: ({ row }: { row: Row<ProjectInfo> }) => row.getValue('uuid'),
   },
   {
     accessorKey: 'createDate',
@@ -95,8 +95,7 @@ const columns = [
         column: column,
       })
     },
-    cell: ({ row }: { row: Row<ProjectInfo> }) =>
-      h('div', d(row.getValue('createDate') as Date, 'standard')),
+    cell: ({ row }: { row: Row<ProjectInfo> }) => d(row.getValue('createDate') as Date, 'standard'),
   },
   {
     accessorKey: 'status',
@@ -106,7 +105,7 @@ const columns = [
         column: column,
       })
     },
-    cell: ({ row }: { row: Row<ProjectInfo> }) => h('div', t(row.getValue('status'))),
+    cell: ({ row }: { row: Row<ProjectInfo> }) => t(row.getValue('status')),
   },
   {
     id: 'manage',
