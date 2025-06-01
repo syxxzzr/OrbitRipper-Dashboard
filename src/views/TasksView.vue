@@ -1,3 +1,6 @@
 <template>
-  <h1>This is Tasks Page</h1>
+  <ControlFlowRoot />
 </template>
+<script setup lang="ts">
+import ControlFlowRoot from '@/components/ControlFlow/ControlFlow.vue'
+</script>
