@@ -46,5 +46,4 @@ const i18n = createI18n({
   numberFormats,
 })
 
-export type AvailableLocales = keyof typeof messages
 export default i18n

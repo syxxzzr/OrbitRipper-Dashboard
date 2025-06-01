@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import type { Ref } from 'vue'
 import { computed, ref } from 'vue'
-import type { AvailableLocales } from '@/i18n'
 
 export type ThemeSchema = 'auto' | 'light' | 'dark'
 
@@ -12,7 +11,7 @@ export const useFrontendStore = defineStore(
     const theme: Ref<ThemeSchema> = ref('auto')
 
     // locale
-    const locale: Ref<AvailableLocales> = ref('en-us')
+    const locale: Ref<string> = ref('en-us')
 
     const themeDark: Ref<boolean> = computed(() =>
       theme.value === 'auto'
