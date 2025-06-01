@@ -4,7 +4,7 @@ import type {
   LocaleDateTimeFormatList,
   LocaleMessageList,
   LocaleNumberFormatList,
-} from '@/types/i18n.ts'
+} from '@/types/i18n.d.ts'
 
 const locales = import.meta.glob('./locales/*.json', { eager: true }) as Record<
   string,
