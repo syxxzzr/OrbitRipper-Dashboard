@@ -11,16 +11,12 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button, type ButtonVariants } from '@/components/ui/button'
+// import { toast } from 'vue-sonner'
 import type { PrimitiveProps } from 'reka-ui'
 import type { Row } from '@tanstack/vue-table'
 
-interface onConfirmFunction {
-  (selectedRow: Row<ProjectInfo>[]): void
-}
-
 interface Props extends PrimitiveProps {
   selected: Row<ProjectInfo>[]
-  onConfirm: onConfirmFunction
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
 }
@@ -28,6 +24,11 @@ interface Props extends PrimitiveProps {
 const props = withDefaults(defineProps<Props>(), {
   as: Button,
 })
+
+function deleteProjects() {
+  // TODO
+  console.log(props.selected)
+}
 </script>
 
 <template>
@@ -50,7 +51,7 @@ const props = withDefaults(defineProps<Props>(), {
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel>{{ $t('cancel') }}</AlertDialogCancel>
-        <AlertDialogAction @click="props.onConfirm(props.selected)">
+        <AlertDialogAction @click="deleteProjects">
           {{ $t('confirm') }}
         </AlertDialogAction>
       </AlertDialogFooter>

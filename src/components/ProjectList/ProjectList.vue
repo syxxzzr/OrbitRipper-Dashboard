@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FlexRender } from '@tanstack/vue-table'
+import { FlexRender, getFilteredRowModel, getSortedRowModel } from '@tanstack/vue-table'
 import {
   TableBody,
   TableCell,
@@ -9,14 +9,15 @@ import {
   Table,
 } from '@/components/ui/table'
 
-import type { Row, Table as TableT } from '@tanstack/vue-table'
-import { getCoreRowModel, useVueTable, createColumnHelper } from '@tanstack/vue-table'
+import type { Row, Column, Table as TableT } from '@tanstack/vue-table'
+import { getCoreRowModel, useVueTable } from '@tanstack/vue-table'
 import { h, ref } from 'vue'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
 import { Trash, SquarePen } from 'lucide-vue-next'
 import { useI18n } from 'vue-i18n'
 import DeleteButton from '@/components/ProjectList/DeleteButton.vue'
+import ColumnHeader from '@/components/ProjectList/ColumnHeader.vue'
 
 const { t, d } = useI18n()
 const defaultData: ProjectInfo[] = [
@@ -46,8 +47,6 @@ const defaultData: ProjectInfo[] = [
   },
 ]
 
-const columnHelper = createColumnHelper<ProjectInfo>()
-
 const columns = [
   {
     id: 'select',
@@ -68,22 +67,47 @@ const columns = [
     enableSorting: false,
     enableHiding: false,
   },
-  columnHelper.accessor('name', {
-    header: () => h('p', t('name')),
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('uuid', {
-    header: () => h('p', t('id')),
-    cell: (info) => info.getValue(),
-  }),
-  columnHelper.accessor('createDate', {
-    header: () => h('p', t('create-date')),
-    cell: (info) => d(info.getValue(), 'standard'),
-  }),
-  columnHelper.accessor('status', {
-    header: () => h('p', t('status')),
-    cell: (info) => t(info.getValue()),
-  }),
+  {
+    accessorKey: 'name',
+    header: ({ column }: { column: Column<ProjectInfo> }) => {
+      return h(ColumnHeader, {
+        localeKey: 'name',
+        column: column,
+      })
+    },
+    cell: ({ row }: { row: Row<ProjectInfo> }) => h('div', row.getValue('name')),
+  },
+  {
+    accessorKey: 'uuid',
+    header: ({ column }: { column: Column<ProjectInfo> }) => {
+      return h(ColumnHeader, {
+        localeKey: 'id',
+        column: column,
+      })
+    },
+    cell: ({ row }: { row: Row<ProjectInfo> }) => h('div', row.getValue('uuid')),
+  },
+  {
+    accessorKey: 'createDate',
+    header: ({ column }: { column: Column<ProjectInfo> }) => {
+      return h(ColumnHeader, {
+        localeKey: 'create-date',
+        column: column,
+      })
+    },
+    cell: ({ row }: { row: Row<ProjectInfo> }) =>
+      h('div', d(row.getValue('createDate') as Date, 'standard')),
+  },
+  {
+    accessorKey: 'status',
+    header: ({ column }: { column: Column<ProjectInfo> }) => {
+      return h(ColumnHeader, {
+        localeKey: 'status',
+        column: column,
+      })
+    },
+    cell: ({ row }: { row: Row<ProjectInfo> }) => h('div', t(row.getValue('status'))),
+  },
   {
     id: 'manage',
     header: () => h('p', t('manage')),
@@ -96,11 +120,7 @@ const columns = [
           DeleteButton,
           {
             variant: 'outline',
-            countToDelete: 1,
-            onConfirm: () => {
-              // TODO: delete
-              console.log(`Delete ID:${row.original.uuid}`)
-            },
+            selected: [row],
           },
           () => h(Trash),
         ),
@@ -118,6 +138,8 @@ const table = useVueTable({
   },
   columns,
   getCoreRowModel: getCoreRowModel(),
+  getSortedRowModel: getSortedRowModel(),
+  getFilteredRowModel: getFilteredRowModel(),
 })
 </script>
 
@@ -125,12 +147,7 @@ const table = useVueTable({
   <div class="flex w-full flex-col space-y-2">
     <div class="flex">
       <DeleteButton
-        :on-confirm="
-          () => {
-            console.log(`Delete`)
-          }
-        "
-        :count-to-delete="1"
+        :selected="table.getSelectedRowModel().rows"
         variant="destructive"
         class="ml-auto mr-2"
         :disabled="!(table.getIsSomePageRowsSelected() || table.getIsAllPageRowsSelected())"
