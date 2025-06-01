@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { FlexRender, getFilteredRowModel, getSortedRowModel } from '@tanstack/vue-table'
+import { h, ref } from 'vue'
+
+import { FlexRender } from '@tanstack/vue-table'
 import {
   TableBody,
   TableCell,
@@ -8,16 +10,23 @@ import {
   TableRow,
   Table,
 } from '@/components/ui/table'
-
-import type { Row, Column, Table as TableT } from '@tanstack/vue-table'
-import { getCoreRowModel, useVueTable } from '@tanstack/vue-table'
-import { h, ref } from 'vue'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Button } from '@/components/ui/button'
-import { Trash, SquarePen } from 'lucide-vue-next'
-import { useI18n } from 'vue-i18n'
 import DeleteButton from '@/components/ProjectList/DeleteButton.vue'
 import ColumnHeader from '@/components/ProjectList/ColumnHeader.vue'
+import { Trash, SquarePen } from 'lucide-vue-next'
+
+import {
+  getCoreRowModel,
+  useVueTable,
+  getExpandedRowModel,
+  getFilteredRowModel,
+  getSortedRowModel,
+} from '@tanstack/vue-table'
+
+import { useI18n } from 'vue-i18n'
+
+import type { Row, Column, Table as TableT } from '@tanstack/vue-table'
 
 const { t, d } = useI18n()
 const defaultData: ProjectInfo[] = [
@@ -139,6 +148,7 @@ const table = useVueTable({
   getCoreRowModel: getCoreRowModel(),
   getSortedRowModel: getSortedRowModel(),
   getFilteredRowModel: getFilteredRowModel(),
+  getExpandedRowModel: getExpandedRowModel(),
 })
 </script>
 

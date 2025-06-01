@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 import {
   AlertDialog,
   AlertDialogCancel,
@@ -10,12 +12,13 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Button, type ButtonVariants } from '@/components/ui/button'
-import { Loader2 } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
+import { Loader2 } from 'lucide-vue-next'
+
 import type { PrimitiveProps } from 'reka-ui'
 import type { Row } from '@tanstack/vue-table'
+
 import { useI18n } from 'vue-i18n'
-import { ref } from 'vue'
 
 interface Props extends PrimitiveProps {
   selected: Row<ProjectInfo>[]
