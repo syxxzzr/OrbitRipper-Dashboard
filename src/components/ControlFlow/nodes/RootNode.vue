@@ -2,6 +2,17 @@
 import { Handle, Position } from '@vue-flow/core'
 import { Card, CardContent } from '@/components/ui/card'
 import { Film } from 'lucide-vue-next'
+import type { VideoFormat } from '@/types/control-flow'
+
+interface Props {
+  data: {
+    format: VideoFormat
+    bitrate: number
+    frames: number
+  }
+}
+
+const props = defineProps<Props>()
 </script>
 
 <template>
@@ -11,8 +22,8 @@ import { Film } from 'lucide-vue-next'
       <div class="flex flex-col space-y-1.5">
         <p class="text-xl">Source Video</p>
         <div class="text-sm opacity-80">
-          <p>YUV420P8 30fps</p>
-          <p>01:22:31</p>
+          <p>{{ props.data.format }} {{ props.data.bitrate }}fps</p>
+          <p>{{ props.data.frames }} Frames</p>
         </div>
       </div>
     </CardContent>

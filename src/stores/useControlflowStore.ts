@@ -6,9 +6,14 @@ import { ref } from 'vue'
 export const useControlStore = defineStore('ControlFlow', () => {
   const nodes: Ref<Node[]> = ref([
     {
-      id: '1',
+      id: 'root',
       type: 'root',
-      position: { x: 250, y: 5 },
+      position: { x: 0, y: 0 },
+      data: {
+        format: 'YUV420P8',
+        bitrate: 30,
+        frames: 100000,
+      },
     },
   ])
   const edges: Ref<Edge[]> = ref([])
