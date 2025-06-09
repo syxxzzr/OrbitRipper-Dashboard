@@ -1,38 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import { LayoutDashboard, ClipboardList, PencilRuler, Gpu, Settings } from 'lucide-vue-next'
-import DashboardView from '@/views/DashboardView.vue'
-import ProjectsView from '@/views/ProjectsView.vue'
-import TasksView from '@/views/TasksView.vue'
-import WorkersView from '@/views/WorkersView.vue'
-import SettingsView from '@/views/SettingsView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/dashboard',
-      component: DashboardView,
+      component: () => import('@/views/DashboardView.vue'),
       meta: { key: 'dashboard', renderOnSidebar: true, icon: LayoutDashboard },
     },
     {
       path: '/projects',
-      component: ProjectsView,
+      component: () => import('@/views/ProjectsView.vue'),
       meta: { key: 'projects', renderOnSidebar: true, icon: ClipboardList },
     },
     {
       path: '/tasks',
-      component: TasksView,
+      component: () => import('@/views/TasksView.vue'),
       meta: { key: 'tasks', renderOnSidebar: true, icon: PencilRuler },
     },
     {
       path: '/workers',
-      component: WorkersView,
+      component: () => import('@/views/WorkersView.vue'),
       meta: { key: 'workers', renderOnSidebar: true, icon: Gpu },
     },
     {
       path: '/settings',
-      component: SettingsView,
+      component: () => import('@/views/SettingsView.vue'),
       meta: { key: 'settings', renderOnSidebar: true, icon: Settings },
     },
 
